@@ -1,0 +1,258 @@
+:root {
+  --primary: #4361ee;
+  --secondary: #3f37c9;
+  --accent: #4895ef;
+  --success: #4cc9f0;
+  --danger: #f72585;
+  --light: #f8f9fa;
+  --dark: #212529;
+  --background: #f8f9fa;
+  --text: #212529;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #121212;
+    --text: #f8f9fa;
+    --light: #2d2d2d;
+    --dark: #f8f9fa;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  background-color: var(--background);
+  color: var(--text);
+  padding: 2rem 1rem;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.container {
+  width: 90%;
+  max-width: 800px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+fieldset {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  background: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  grid-column: span 1;
+}
+
+@media (prefers-color-scheme: dark) {
+  fieldset {
+    background: #1e1e1e;
+    border-color: #333;
+  }
+}
+
+legend {
+  font-weight: 600;
+  padding: 0 0.5rem;
+  color: var(--primary);
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+  display: block;
+}
+
+input, select {
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  width: 100%;
+  background-color: white;
+  color: var(--dark);
+}
+
+@media (prefers-color-scheme: dark) {
+  input, select {
+    background: #2d2d2d;
+    border-color: #444;
+    color: white;
+  }
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.2);
+}
+
+button {
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+button:hover {
+  background-color: var(--secondary);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+button#clear {
+  background-color: #f0f0f0;
+  color: var(--text);
+}
+
+button#clear:hover {
+  background-color: #e0e0e0;
+}
+
+@media (prefers-color-scheme: dark) {
+  button#clear {
+    background-color: #333;
+    color: white;
+  }
+  
+  button#clear:hover {
+    background-color: #444;
+  }
+}
+
+.controls {
+  grid-column: span 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+
+.output {
+  background: white;
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  text-align: center;
+  margin-top: 1rem;
+  animation: fadeIn 0.3s ease-out;
+}
+
+@media (prefers-color-scheme: dark) {
+  .output {
+    background: #1e1e1e;
+    border: 1px solid #333;
+  }
+}
+
+.output p {
+  margin: 0.5rem 0;
+  font-size: 1.1rem;
+}
+
+.surplus {
+  color: var(--danger);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.deficit {
+  color: var(--success);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.hide {
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+
+.output:not(.hide) {
+  opacity: 1;
+  height: auto;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.loading {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255,255,255,0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 1s ease-in-out infinite;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 768px) {
+  form {
+    grid-template-columns: 1fr;
+  }
+  
+  fieldset {
+    grid-column: span 1;
+  }
+  
+  .controls {
+    grid-column: span 1;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+}
